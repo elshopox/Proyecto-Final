@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Factura</h1>
+
+<!-- Información del comprador -->
+<p><strong>Nombre del Comprador:</strong> {{ receipt.buyer_name }}</p>
+<p><strong>Cédula de Identidad (CI):</strong> {{ receipt.ci }}</p>
+<p><strong>Fecha:</strong> {{ receipt.date }}</p>
+
+<!-- Lista de productos -->
+<h2>Productos</h2>
+<ul>
+    {% for item in receipt.product_list %}
+        <li>{{ item['name'] }} - {{ item['price'] }} Bs.</li>
+    {% endfor %}
+</ul>
+
+<!-- Total de la compra -->
+<p><strong>Total:</strong> {{ receipt.total }} Bs.</p>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Carrito de Compras</h1>
+<ul>
+    {% for item in cart_items %}
+        <li>{{ item['name'] }} - {{ item['price'] }} Bs.</li>
+    {% endfor %}
+</ul>
+
+<p>Total: {{ cart_total }} Bs.</p>
+
+<!-- Botón para ir al formulario de facturación -->
+<a href="{{ url_for('checkout') }}" class="button">Generar Factura</a>
+{% endblock %}
