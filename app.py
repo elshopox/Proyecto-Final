@@ -71,7 +71,7 @@ def add_product():
         }
         
         # Agregar el producto a la lista
-        productos.append(product)
+        product.append(product)
         
         # Mostrar un mensaje de éxito
         flash('Producto agregado exitosamente', 'success')
