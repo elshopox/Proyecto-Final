@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<center>
 <h1>Factura</h1>
 
 <p><strong>Nombre del Comprador:</strong> {{ receipt.buyer_name }}</p>
@@ -15,4 +16,5 @@
 </ul>
 
 <p><strong>Total:</strong> {{ receipt.total }} Bs.</p>
+</center>
 {% endblock %}

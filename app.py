@@ -53,22 +53,34 @@ def checkout():
         return render_template('receipt.html', receipt=receipt)
     return render_template('checkout.html')
 
-@app.route('/add_product', methods=('GET', 'POST'))
+@app.route('/add_product', methods=['GET', 'POST'])
 def add_product():
     if request.method == 'POST':
+        # Obtener datos del formulario
         name = request.form['name']
         description = request.form['description']
-        price = request.form['price']
+        price = float(request.form['price'])
         image_url = request.form['image_url']
-
-        conn = get_db_connection()
-        conn.execute('INSERT INTO products (name, description, price, image_url) VALUES (?, ?, ?, ?)',
-                     (name, description, price, image_url))
-        conn.commit()
-        conn.close()
+        
+        # Crear un diccionario para el producto
+        product = {
+            'name': name,
+            'description': description,
+            'price': price,
+            'image_url': image_url
+        }
+        
+        # Agregar el producto a la lista
+        productos.append(product)
+        
+        # Mostrar un mensaje de éxito
+        flash('Producto agregado exitosamente', 'success')
+        
+        # Redirigir a la página de inicio o a la lista de productos
         return redirect(url_for('index'))
-
+    
     return render_template('add_product.html')
+
 
 @app.route('/cart')
 def cart():
